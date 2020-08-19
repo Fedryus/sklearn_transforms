@@ -35,8 +35,8 @@ class normalizarX(BaseEstimator, TransformerMixin):
         data= X.copy()
         
         scalar= MinMaxScaler()
-        scalar.fit(data[features])
-        data[features]= scalar.transform(data[features])
+        scalar.fit((data[features]))
+        data[features]= scalar.transform((data[features]))
         # np.concatenate((first, second), axis=1)
         # Devolvemos un nuevo dataframe de datos sin las columnas no deseadas
         return data
