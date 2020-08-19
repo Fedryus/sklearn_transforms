@@ -33,7 +33,7 @@ class normalizarX(BaseEstimator, TransformerMixin):
                    ]
         # Primero copiamos el dataframe de datos de entrada 'X'
         data= X.copy()
-        f= data[features]
+        f= np.array(data[features])
         scalar= MinMaxScaler()
         scalar.fit(f)
         data[features]= scalar.transform(f)
