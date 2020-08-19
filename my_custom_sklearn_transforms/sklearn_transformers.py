@@ -14,3 +14,29 @@ class DropColumns(BaseEstimator, TransformerMixin):
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
+    
+    
+
+class normalizarX(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        1
+
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        features = [
+        "HOURS_DATASCIENCE", "HOURS_BACKEND", "HOURS_FRONTEND",
+        "NUM_COURSES_BEGINNER_DATASCIENCE", "NUM_COURSES_BEGINNER_BACKEND", "NUM_COURSES_BEGINNER_FRONTEND",
+        "NUM_COURSES_ADVANCED_DATASCIENCE", "NUM_COURSES_ADVANCED_BACKEND", "NUM_COURSES_ADVANCED_FRONTEND",
+        "AVG_SCORE_DATASCIENCE", "AVG_SCORE_BACKEND", "AVG_SCORE_FRONTEND"
+                   ]
+        # Primero copiamos el dataframe de datos de entrada 'X'
+        data= X.copy()
+        
+        scalar= MinMaxScaler()
+        scalar.fit(data[features])
+        data[features]= scalar.transform(data[features])
+        # np.concatenate((first, second), axis=1)
+        # Devolvemos un nuevo dataframe de datos sin las columnas no deseadas
+        return data
