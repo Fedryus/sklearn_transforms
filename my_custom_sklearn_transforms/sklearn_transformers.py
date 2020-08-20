@@ -36,13 +36,17 @@ class normalizarX(BaseEstimator, TransformerMixin):
                    ]
         # Primero copiamos el dataframe de datos de entrada 'X'
         data= X.copy()
-        xx=np.array(data)[:, :-1]
-        yy=np.array(data)[:, -1]
-
+        #xx=np.array(data)[:, :-1]
+        #yy=np.array(data)[:, -1]
         scalar= MinMaxScaler()
-        scalar.fit(xx)
-        X= scalar.transform(xx)
-        arr=np.column_stack((X,yy))
-        datasetN = pd.DataFrame(data=arr,columns=col)
+        scalar.fit(data)
+        X= scalar.transform(data)
+    
+    
+#         scalar= MinMaxScaler()
+#         scalar.fit(xx)
+#         X= scalar.transform(xx)
+#         arr=np.column_stack((X,yy))
+#         datasetN = pd.DataFrame(data=arr,columns=col)
        
-        return datasetN
+        return X
