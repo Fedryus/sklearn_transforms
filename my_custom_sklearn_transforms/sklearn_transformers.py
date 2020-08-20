@@ -26,18 +26,21 @@ class normalizarX(BaseEstimator, TransformerMixin):
         return self
     
     def transform(self, X):
-        features = [
+        col = [
         "HOURS_DATASCIENCE", "HOURS_BACKEND", "HOURS_FRONTEND",
         "NUM_COURSES_BEGINNER_DATASCIENCE", "NUM_COURSES_BEGINNER_BACKEND", "NUM_COURSES_BEGINNER_FRONTEND",
         "NUM_COURSES_ADVANCED_DATASCIENCE", "NUM_COURSES_ADVANCED_BACKEND", "NUM_COURSES_ADVANCED_FRONTEND",
-        "AVG_SCORE_DATASCIENCE", "AVG_SCORE_BACKEND", "AVG_SCORE_FRONTEND"
+        "AVG_SCORE_DATASCIENCE", "AVG_SCORE_BACKEND", "AVG_SCORE_FRONTEND","PROFILE"
                    ]
         # Primero copiamos el dataframe de datos de entrada 'X'
         data= X.copy()
-        f= data[features]
-       #scalar= MinMaxScaler()
-        #scalar.fit(f)
-        #data[features]= scalar.transform(f)
-        # np.concatenate((first, second), axis=1)
-        # Devolvemos un nuevo dataframe de datos sin las columnas no deseadas
-        return data
+        xx=np.array(data)[:, :-1]
+        yy=np.array(data)[:, -1]
+
+        scalar= MinMaxScaler()
+        scalar.fit(xx)
+        X= scalar.transform(xx)
+        arr=np.column_stack((X,yy))
+        datasetN = pd.DataFrame(data=arr,columns=col)
+       
+        return datasetN
