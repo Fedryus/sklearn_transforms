@@ -42,6 +42,6 @@ class normalizarX(BaseEstimator, TransformerMixin):
         scalar.fit(xx)
         X= scalar.transform(xx)
         arr=np.column_stack((X,yy))
-       # datasetN = pd.DataFrame(data=arr,columns=col)
+        datasetN = pd.DataFrame(data=arr,columns=col)
        
-        return data
+        return datasetN
