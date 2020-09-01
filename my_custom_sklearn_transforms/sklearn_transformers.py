@@ -57,7 +57,7 @@ class normalizarX(BaseEstimator, TransformerMixin):
     
     
     
-class smo(BaseEstimator, TransformerMixin):
+class Smo(BaseEstimator, TransformerMixin):
     def __init__(self):
         1
 
