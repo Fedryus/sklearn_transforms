@@ -3,6 +3,9 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.svm import SVC
 import numpy as np
 import pandas as pd
+from imblearn.over_sampling import SMOTE
+from sklearn.utils import resample
+
 
 # All sklearn Transforms must have the `transform` and `fit` methods
 class DropColumns(BaseEstimator, TransformerMixin):
@@ -50,3 +53,19 @@ class normalizarX(BaseEstimator, TransformerMixin):
 #         datasetN = pd.DataFrame(data=arr,columns=col)
        
         return X
+    
+    
+    
+    
+class smo(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        1
+
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        sm = SMOTE(random_state=42, sampling_strategy='minority')
+        smote_x_train, smote_y_train = sm.fit_resample(X_train, y_train)
+       
+        return smote_x_train
