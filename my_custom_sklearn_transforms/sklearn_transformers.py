@@ -66,6 +66,6 @@ class Smo(BaseEstimator, TransformerMixin):
     
     def transform(self, X):
         sm = SMOTE(random_state=42, sampling_strategy='minority')
-        smote_x_train, smote_y_train = sm.fit_resample(X_train, y_train)
+        smote_x_train, smote_y_train = sm.fit_resample(X)
        
         return smote_x_train
