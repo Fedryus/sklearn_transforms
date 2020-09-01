@@ -58,14 +58,14 @@ class normalizarX(BaseEstimator, TransformerMixin):
     
     
 class Smo(BaseEstimator, TransformerMixin):
-    def __init__(self,y_train):
-        self.y=y_train
+    def __init__(self):
+        1
 
-    def fit(self, X, y=None):
+    def fit(self, X, Y):
         return self
     
-    def transform(self, X):
+    def transform(self, X, Y):
         sm = SMOTE(random_state=42, sampling_strategy='minority')
-        smote_x_train,smote_y_train = sm.fit_resample(X,self.y)
+        smote_x_train,smote_y_train = sm.fit_resample(X,Y)
        
         return smote_x_train
